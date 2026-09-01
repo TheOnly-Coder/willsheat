@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>will</title>
+<style>
+  *, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #fff;
+    color: #111;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 24px;
+  }
+
+  main {
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+
+  p {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.5;
+    margin-bottom: 32px;
+  }
+
+  .actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  button, a.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: #fff;
+    color: #111;
+    font-size: 14px;
+    font-family: inherit;
+    cursor: pointer;
+    text-decoration: none;
+    width: 100%;
+    user-select: none;
+  }
+
+  button:hover, a.btn:hover {
+    border-color: #999;
+  }
+
+  .ip-display {
+    font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+    font-size: 13px;
+    color: #888;
+    margin-top: 24px;
+  }
+</style>
+</head>
+<body>
+  <main>
+    <h1>will</h1>
+    <p>Minecraft server and YouTube.</p>
+    <div class="actions">
+      <button id="copyBtn" type="button">Copy Server IP</button>
+      <a class="btn" href="https://www.youtube.com/@HotWillNotElaborate" target="_blank" rel="noopener noreferrer">YouTube</a>
+    </div>
+    <p class="ip-display">play.willsheat.org</p>
+  </main>
+
+  <script>
+    document.getElementById('copyBtn').addEventListener('click', function() {
+      var ip = 'play.willsheat.org';
+      var btn = this;
+      var original = btn.textContent;
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(ip).then(function() {
+          btn.textContent = 'Copied';
+          setTimeout(function() { btn.textContent = original; }, 1500);
+        });
+      } else {
+        var ta = document.createElement('textarea');
+        ta.value = ip;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); btn.textContent = 'Copied'; setTimeout(function() { btn.textContent = original; }, 1500); } catch(e) {}
+        document.body.removeChild(ta);
+      }
+    });
+  </script>
+</body>
+</html>
