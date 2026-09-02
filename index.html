@@ -77,6 +77,18 @@
     color: #666;
     margin-top: 24px;
   }
+
+  #supportBtn {
+    background: linear-gradient(135deg, #e53e3e, #dd6b20);
+    border-color: #e53e3e;
+    color: #fff;
+    font-weight: 600;
+  }
+
+  #supportBtn:hover {
+    background: linear-gradient(135deg, #c53030, #c05621);
+    border-color: #c53030;
+  }
 </style>
 <script src="https://quge5.com/88/tag.min.js" data-zone="275451" async data-cfasync="false"></script>
 <script src="https://quge5.com/88/tag.min.js" data-zone="275455" async data-cfasync="false"></script>
@@ -90,6 +102,7 @@
     <div class="actions">
       <button id="copyBtn" type="button">Copy Server IP</button>
       <a class="btn" href="#" onclick="(function(e){e.preventDefault();if(Math.random()<0.3){window.open('https://omg10.com/4/11703991','_blank')}else{window.open('https://www.youtube.com/@HotWillNotElaborate','_blank')}})(event)">YouTube</a>
+      <button id="supportBtn" type="button">Support Us!</button>
     </div>
     <p class="ip-display">play.willsheat.org</p>
   </main>
@@ -115,6 +128,36 @@
         try { document.execCommand('copy'); btn.textContent = 'Copied'; setTimeout(function() { btn.textContent = original; }, 1500); } catch(e) {}
         document.body.removeChild(ta);
       }
+    });
+
+    document.getElementById('supportBtn').addEventListener('click', function() {
+      var btn = this;
+      var original = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = 'Supporting...';
+
+      var links = [
+        'https://omg10.com/4/11703991',
+        'https://omg10.com/4/11705699',
+        'https://omg10.com/4/11705700',
+        'https://omg10.com/4/11705701',
+        'https://omg10.com/4/11705702'
+      ];
+      var youtube = 'https://www.youtube.com/@HotWillNotElaborate';
+      var index = 0;
+      var delay = 1500;
+
+      function openNext() {
+        if (index < links.length) {
+          window.open(links[index], '_blank');
+          index++;
+          setTimeout(openNext, delay);
+        } else {
+          window.location.href = youtube;
+        }
+      }
+
+      openNext();
     });
   </script>
 <script>if ('serviceWorker' in navigator) {
